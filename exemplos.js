@@ -51,8 +51,14 @@ const reverseString2 = str => str.split("").reduceRight((x, y) => x + y, "");
 
 const range = (start, stop) => new Array(stop - start).fill(0).map((v, i) => start + i);
 
-
 const factorialByRange = n => range(1, n + 1).reduce((x, y) => x * y, 1);
+
+const objCopy = obj => {
+    let copy = Object.create(Object.getPrototypeOf(obj));
+    Object.getOwnPropertyNames(obj).forEach(
+        prop => Object.defineProperty(copy, prop, Object.getOwnPropertyDescriptor(obj, prop)));
+    return copy;
+};
 
 console.log(getRandomLetter());
 console.log(getRandomFileName(".txt"));
