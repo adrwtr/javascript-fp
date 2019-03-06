@@ -6,3 +6,6 @@ function fact(n) {
     }
 }
 
+
+console.log(fact(10));
+
