@@ -1,10 +1,14 @@
-var once = require("./once");
+// var once = require("./once");
 
-function avisar(teste) {
-    console.log('mensagem: ' + teste);
-}
+const flipTwo = fn => (x, y) => fn(y, x);
+const demethodize = fn => (arg0, ...args) => fn.apply(arg0, args);
 
-let nova = once(avisar);
+const average = arr => arr.reduce(sum, 0) / arr.length;
+const getField = attr => obj => obj[attr];
+const myMap = curry(flipTwo(demethodize(map)));
+const getLat = curry(getField)("lat");
 
-nova(1);
-nova(2);
+
+const getAllLats = curry(myMap)(getLat);
+
+let averageLat2 = pipeline(curry(myMap)(curry(getField)("lat")), average);
