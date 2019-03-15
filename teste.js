@@ -3,15 +3,9 @@ const demethodize = fn => (arg0, ...args) => fn.apply(arg0, args);
 const getField = attr => obj => obj[attr];
 const myMap = curry(flipTwo(demethodize(map)));
 const getLat = curry(getField)("lat");
-
-
 const getAllLats = curry(myMap)(getLat);
-
 let averageLat2 = pipeline(curry(myMap)(curry(getField)("lat")), average);
-
-
 const mySum = myArray.reduce((x, y) => x + y, 0);
-
 
 const roundFix2 = (a, n) => {
     let r = a > 0 ? Math.ceil(n) : Math.floor(n);
@@ -24,40 +18,12 @@ const roundFix2 = (a, n) => {
 
 const reverseString2 = str => str.split("").reduceRight((x, y) => x + y, "");
 
-
-
-const factorialByRange = n => range(1, n + 1).reduce((x, y) => x * y, 1);
-
 const objCopy = obj => {
     let copy = Object.create(Object.getPrototypeOf(obj));
     Object.getOwnPropertyNames(obj).forEach(
         prop => Object.defineProperty(copy, prop, Object.getOwnPropertyDescriptor(obj, prop)));
     return copy;
 };
-
-
-const binaryOp1 = op => {
-    switch (op) {
-        case "+":
-            return (x, y) => x + y;
-        case "-":
-            return (x, y) => x - y;
-        case "*":
-            return (x, y) => x * y;
-            //
-            // etc.
-            //
-    }
-}
-
-
-const binaryOp2 = op => new Function("x", "y", `return x ${op} y;`);
-
-const binaryLeftOp = (x, op) =>
-    (y) => binaryOp2(op)(x, y);
-
-const binaryOpRight = (op, y) =>
-    (x) => binaryOp2(op)(x, y);
 
 
 const curryByBind = fn =>
@@ -96,8 +62,6 @@ const partialCurryByClosure = fn => {
     };
     return curryize();
 };
-
-
 
 
 

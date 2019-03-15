@@ -19,6 +19,20 @@ const soma3 = (x, y, z) => x + y + z;
 // a soma de todos os valores, dividido pelo total de valores
 const average = arr => arr.reduce(somaSimples, 0) / arr.length;
 
+// aplica a função fatorial, usando range
+const factorialByRange = n => funcoes.high_order.range(1, n + 1)
+    .reduce(
+        (x, y) => x * y, 1
+    );
+
+
+// faz o numero vezes 2
+// vezes2 => n -> n
+const vezes2 = funcoes.high_order.binaryLeftOp(
+    2,
+   '*'
+);
+
 // Usando as funções
 
 // log das funcoes no arquivo importado
@@ -39,16 +53,21 @@ logCompostoFlipTwoArgs('valor 1', 'valor 2');
 
 // aplica higth order map -> aplica a função elemento por elemento
 // deve imprimir os elementos da lista
+// array.map(callback[, indice]) => array
 arrSequecia.map(logSimples);
 // result => 1\n 2\n 3\n 5\n
 
+// aplica map e fatorial
+logSimples(arrSequecia.map(factorialByRange));
+// result [ 1, 2, 6, 24, 120 ]
+
 // aplica higth order reduce
-// array.reduce(callback[, valorInicial])
+// array.reduce(callback[, valorInicial]) => number
 arrSequecia.reduce(logSimples);
 // result => 1\n undefined\n undefined\n undefined\n undefined\n
 
 // aplica higth order reduce
-// array.reduce(callback[, valorInicial])
+// array.reduce(callback[, valorInicial]) => number
 logSimples(
     arrSequecia.reduce(somaSimples)
 );
@@ -60,4 +79,28 @@ logSimples(
 );
 // result => 3
 
+// chama a função higth order range
+logSimples(funcoes.high_order.range(5, 10));
+// result => [5, 6, 7, 8, 9]
 
+// fatorial usando Range
+logSimples(factorialByRange(4));
+// result => 24
+
+// exemplo de binaryOp
+logSimples(funcoes.high_order.binaryOp('+')(1, 2));
+// 3
+
+// aplica reduce e binaryOp
+logSimples(
+    arrSequecia.reduce(
+        funcoes.high_order.binaryOp('-')
+    )
+);
+// result => -13
+
+// vezes2 => n -> n
+logSimples(vezes2(4));
+// result => 8
+
+logSimples
