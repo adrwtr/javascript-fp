@@ -7,6 +7,9 @@ const funcoes = {
 
 const arrSequecia = [1, 2, 3, 4, 5];
 
+// apenas retorna o valor
+const simplesRetorno = (retornar) => retornar;
+
 // funcao com 2 argumentos
 const logComposto = (ds_stringA, ds_stringB) => console.log(ds_stringA, ds_stringB);
 
@@ -74,6 +77,44 @@ describe(
         );
 
         it(
+            'Filter',
+            function() {
+                // deve filtrar e trazer os valores do array
+                assert.deepEqual(
+                    arrSequecia.filter(v => v % 2 == 0),
+                    [2, 4]
+                )
+
+                // todos os elementos passam pela função?
+                assert.equal(
+                    arrSequecia.every(v => v % 2 == 0),
+                    false
+                )
+
+                assert.equal(
+                    [2, 4, 6].every(v => v % 2 == 0),
+                    true
+                )
+
+                // none é a negacao de every
+                assert.equal(
+                    funcoes.high_order.none(
+                        [2, 4, 6],
+                        v => v % 2 == 0
+                    ),
+                    false
+                )
+
+                assert.equal(
+                    funcoes.high_order.filterNot(
+                        [2, 4, 6]
+                    )((v => v % 2 == 0)),
+                    false
+                )
+            }
+        );
+
+        it(
             'Average',
             function() {
                 // chama funcao de média
@@ -121,6 +162,43 @@ describe(
                     vezes2(4),
                     8
                 );
+            }
+        );
+
+
+        it(
+            'unary',
+            function() {
+                var processo = funcoes.high_order.unary(simplesRetorno);
+
+                // recebe varios argumentos
+                // porém executa apenas no primeiro
+                assert.deepEqual(
+                    processo(
+                        [1, 2],
+                        [3, 4]
+                    ),
+                    [1, 2]
+                );
+
+            }
+        );
+
+        it(
+            'Demethodize - Transformar o metodo de uma classe em um função que suporta vários tipos',
+            function() {
+                var processo = funcoes.high_order.unary(simplesRetorno);
+
+                // recebe varios argumentos
+                // porém executa apenas no primeiro
+                assert.deepEqual(
+                    processo(
+                        [1, 2],
+                        [3, 4]
+                    ),
+                    [1, 2]
+                );
+
             }
         );
     }

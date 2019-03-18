@@ -1,11 +1,51 @@
+
+
+function teste(...args) {
+    console.log(args[0]);
+}
+
+function teste2(...args) {
+    console.log(...args);
+    console.log(args);
+    console.log(typeof args);
+}
+
+function coisa(a, b, c) {
+    return a + b + c;
+}
+
+function teste3(...args) {
+    return  ...args;
+}
+
+teste(1, 2, 3);
+teste2(1, 2, 3);
+var args = [0, 1, 2];
+
+console.log(
+    coisa.apply(null, args)
+);
+
+console.log(
+    coisa.call(null, 0, 1, 2)
+);
+
+function minhaFuncao(x, y, z) { }
+minhaFuncao.apply(null, args);
+
+const demethodize1 = fn => (arg0, ...args) => fn.apply(arg0, args);
+const demethodize2 = fn => (arg0, ...args) => fn.call(arg0, ...args);
+const demethodize3 = fn => (...args) => fn.bind(...args)();
+
+
 // var once = require("./once");
-const demethodize = fn => (arg0, ...args) => fn.apply(arg0, args);
+
 const getField = attr => obj => obj[attr];
-const myMap = curry(flipTwo(demethodize(map)));
-const getLat = curry(getField)("lat");
-const getAllLats = curry(myMap)(getLat);
-let averageLat2 = pipeline(curry(myMap)(curry(getField)("lat")), average);
-const mySum = myArray.reduce((x, y) => x + y, 0);
+// const myMap = curry(flipTwo(demethodize(map)));
+// const getLat = curry(getField)("lat");
+// const getAllLats = curry(myMap)(getLat);
+// let averageLat2 = pipeline(curry(myMap)(curry(getField)("lat")), average);
+// const mySum = myArray.reduce((x, y) => x + y, 0);
 
 const roundFix2 = (a, n) => {
     let r = a > 0 ? Math.ceil(n) : Math.floor(n);
@@ -62,53 +102,3 @@ const partialCurryByClosure = fn => {
     };
     return curryize();
 };
-
-
-
-
-const none = (arr, fn) => arr.every(v => !fn(v));
-
-const not = fn => (...args) => !fn(...args);
-
-const filterNot = arr => fn => arr.filter(not(fn));
-
-const unary = fn => (...args) => fn(args[0]);
-
-const isNegative = x => x < 0;
-
-console.log(
-    none(
-        [
-            1, 2, 3
-        ],
-        function(x) {
-            return x == 1;
-        }
-    )
-);
-
-console.log(
-    none(
-        [
-            4, 2, 3
-        ],
-        function(x) {
-            return x == 1;
-        }
-    )
-);
-
-console.log(
-    filterNot(
-        [
-            4, 2, 3
-        ]
-    )(function () { return 10;})
-);
-
-
-
-console.log(getRandomLetter());
-console.log(getRandomFileName(".txt"));
-console.log(range(2, 5));
-console.log(factorialByRange(10));

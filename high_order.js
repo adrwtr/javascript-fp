@@ -34,11 +34,29 @@ const binaryLeftOp = (x, op) => (y) => binaryOp(op)(x, y);
 // = 10 + x
 const binaryOpRight = (op, y) => (x) => binaryOp(op)(x, y);
 
+// apenas nega a função every
+const none = (arr, fn) => arr.every(v => !fn(v));
+
+// chama a função e retorna a negação dela
+const not = fn => (...args) => !fn(...args);
+
+// filtra usando o not
+// retorna uma função que irá filtrar um array
+// essa função espera receber uma função de filtro que será negada !
+const filterNot = arr => fn => arr.filter(not(fn));
+
+// recebe varios argumentos
+// porém executa apenas no primeiro
+const unary = fn => (...args) => fn(args[0]);
 
 module.exports = {
     'flipTwoArgs' : flipTwoArgs,
     'range' : range,
     'binaryOp' : binaryOp,
     'binaryLeftOp' : binaryLeftOp,
-    'binaryOpRight' : binaryOpRight
+    'binaryOpRight' : binaryOpRight,
+    'none' : none,
+    'not' : not,
+    'filterNot' : filterNot,
+    'unary' : unary
 };
