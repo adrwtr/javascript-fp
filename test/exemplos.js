@@ -167,7 +167,6 @@ describe(
             }
         );
 
-
         it(
             'unary',
             function() {
@@ -200,6 +199,23 @@ describe(
                 assert.deepEqual(
                     bindMap(string, toUpperCase),
                     [ 'M', 'I', 'N', 'H', 'A', 'S', 'T', 'R', 'I', 'N', 'G' ]
+                );
+            }
+        );
+
+        it(
+            'once',
+            function() {
+                var somar1vez = funcoes.high_order.once(somaSimples);
+
+                assert.equal(
+                    somar1vez(1, 2),
+                    3
+                );
+
+                assert.equal(
+                    somar1vez(1, 2),
+                    undefined
                 );
             }
         );

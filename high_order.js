@@ -49,6 +49,18 @@ const filterNot = arr => fn => arr.filter(not(fn));
 // porém executa apenas no primeiro
 const unary = fn => (...args) => fn(args[0]);
 
+// executa a função apenas uma unica vez
+const once = func => {
+    let done = false;
+
+    return (...args) => {
+        if (!done) {
+            done = true;
+            return func(...args);
+        }
+    };
+};
+
 module.exports = {
     'flipTwoArgs' : flipTwoArgs,
     'range' : range,
@@ -58,5 +70,6 @@ module.exports = {
     'none' : none,
     'not' : not,
     'filterNot' : filterNot,
-    'unary' : unary
+    'unary' : unary,
+    'once' : once
 };
