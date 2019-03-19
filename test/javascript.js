@@ -19,7 +19,7 @@ describe(
                 let testeD = (arg1, arg2) => (arg1 + arg2);
                 let testeE = (...args) => testeD(...args);
 
-                // aplica o array ...args
+                // aplica o array "...args"
                 const demethodize1 = fn => (arg0, ...args) => fn.apply(arg0, args);
 
                 // aplica os parametros de ...args na função arg0 conforme TesteE e TesteD

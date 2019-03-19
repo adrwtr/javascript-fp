@@ -2,7 +2,9 @@ var mocha = require('mocha');
 var assert = require('assert');
 
 const funcoes = {
-    'high_order' : require('../high_order')
+    'high_order' : require('../high_order'),
+    'demethodize' : require('../demethodize'),
+    'math' : require('../math'),
 };
 
 const arrSequecia = [1, 2, 3, 4, 5];
@@ -43,7 +45,7 @@ describe(
     'Exemplos de uso das funçoes',
     function() {
         it(
-            'aplica high order que altera a ordem dos argumentos',
+            'Flip Args - FlipTwo',
             function() {
                 const logCompostoFlipTwoArgs = funcoes.high_order.flipTwoArgs(logComposto);
                 logCompostoFlipTwoArgs('valor 1', 'valor 2');
@@ -187,18 +189,18 @@ describe(
         it(
             'Demethodize - Transformar o metodo de uma classe em um função que suporta vários tipos',
             function() {
-                var processo = funcoes.high_order.unary(simplesRetorno);
+                let string = 'MinhaString';
+                const bindMap = funcoes.demethodize
+                    .demethodizeBindObject(Array.prototype.map);
 
-                // recebe varios argumentos
-                // porém executa apenas no primeiro
+                const toUpperCase = funcoes.demethodize
+                    .demethodizeBindObject(String.prototype.toUpperCase);
+
+                // exemplo de demethodize
                 assert.deepEqual(
-                    processo(
-                        [1, 2],
-                        [3, 4]
-                    ),
-                    [1, 2]
+                    bindMap(string, toUpperCase),
+                    [ 'M', 'I', 'N', 'H', 'A', 'S', 'T', 'R', 'I', 'N', 'G' ]
                 );
-
             }
         );
     }
