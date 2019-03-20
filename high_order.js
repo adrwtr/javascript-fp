@@ -61,6 +61,9 @@ const once = func => {
     };
 };
 
+// pega um atributo do objeto
+const getField = attr => obj => obj[attr];
+
 module.exports = {
     'flipTwoArgs' : flipTwoArgs,
     'range' : range,
@@ -71,5 +74,6 @@ module.exports = {
     'not' : not,
     'filterNot' : filterNot,
     'unary' : unary,
-    'once' : once
+    'once' : once,
+    'getField' : getField
 };

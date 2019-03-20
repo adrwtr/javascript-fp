@@ -1,13 +1,3 @@
-
-// var once = require("./once");
-
-const getField = attr => obj => obj[attr];
-// const myMap = curry(flipTwo(demethodize(map)));
-// const getLat = curry(getField)("lat");
-// const getAllLats = curry(myMap)(getLat);
-// let averageLat2 = pipeline(curry(myMap)(curry(getField)("lat")), average);
-// const mySum = myArray.reduce((x, y) => x + y, 0);
-
 const roundFix2 = (a, n) => {
     let r = a > 0 ? Math.ceil(n) : Math.floor(n);
     a += n - r;

@@ -47,5 +47,61 @@ describe(
                 );
             }
         );
+
+        it(
+            'operador in',
+            function() {
+                let objTeste = {
+                    'propertyA' : 'value - 1',
+                    'propertyB' : 'value - 2'
+                }
+
+                assert.equal(
+                    ('propertyA' in objTeste),
+                    true
+                );
+
+                assert.equal(
+                    ('propertyB' in objTeste),
+                    true
+                );
+
+                assert.equal(
+                    ('propertyC' in objTeste),
+                    false
+                );
+            }
+        );
+
+        it(
+            'lambda',
+            function() {
+                const testLambda1 = fn => 2;
+
+                const testLambda2 = fn => {
+                    return x => 3;
+                };
+
+                const testLambda3 = fn => {
+                    let a = 0;
+                    return x => a = 4;
+                };
+
+                assert.equal(
+                    testLambda1(),
+                    2
+                );
+
+                assert.equal(
+                    testLambda2()(),
+                    3
+                );
+
+                assert.equal(
+                    testLambda3()(),
+                    4
+                );
+            }
+        );
     }
 );

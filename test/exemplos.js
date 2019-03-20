@@ -219,5 +219,25 @@ describe(
                 );
             }
         );
+
+        it(
+            'getField',
+            function() {
+                /*
+                assert.equal(
+                    funcoes,
+                    3
+                );
+
+                assert.equal(
+                    somar1vez(1, 2),
+                    undefined
+                );
+                */
+            }
+        );
+
+
+
     }
 );
