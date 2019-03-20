@@ -1,21 +1,3 @@
-const roundFix2 = (a, n) => {
-    let r = a > 0 ? Math.ceil(n) : Math.floor(n);
-    a += n - r;
-    return {
-        a,
-        r
-    };
-};
-
-const reverseString2 = str => str.split("").reduceRight((x, y) => x + y, "");
-
-const objCopy = obj => {
-    let copy = Object.create(Object.getPrototypeOf(obj));
-    Object.getOwnPropertyNames(obj).forEach(
-        prop => Object.defineProperty(copy, prop, Object.getOwnPropertyDescriptor(obj, prop)));
-    return copy;
-};
-
 
 const curryByBind = fn =>
     fn.length === 0 ? fn() : p => curryByBind(fn.bind(null, p));

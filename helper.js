@@ -33,6 +33,16 @@ const reverseString = str => {
     return arr.join("");
 };
 
+const reverseString2 = str => str.split("").reduceRight((x, y) => x + y, "");
+
+const objCopy = obj => {
+    let copy = Object.create(Object.getPrototypeOf(obj));
+    Object.getOwnPropertyNames(obj).forEach(
+        prop => Object.defineProperty(copy, prop, Object.getOwnPropertyDescriptor(obj, prop)));
+    return copy;
+};
+
+
 module.exports = {
     'getRandomLetter' : getRandomLetter,
     'getRandomFileName' : getRandomFileName,

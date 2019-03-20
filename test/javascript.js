@@ -45,6 +45,12 @@ describe(
                     testeE(1, 2),
                     3
                 );
+
+                // qntos argumentos a função tem?
+                assert.equal(
+                    testeD.length,
+                    2
+                );
             }
         );
 
