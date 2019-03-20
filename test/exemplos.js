@@ -223,17 +223,19 @@ describe(
         it(
             'getField',
             function() {
-                /*
-                assert.equal(
-                    funcoes,
-                    3
+                let objTeste = {
+                    'propertyA' : 'value - 1',
+                    'propertyB' : 'value - 2'
+                }
+
+                let getPropertyB = funcoes.high_order.getField(
+                    'propertyB'
                 );
 
                 assert.equal(
-                    somar1vez(1, 2),
-                    undefined
+                    getPropertyB(objTeste),
+                    'value - 2'
                 );
-                */
             }
         );
 
