@@ -240,6 +240,44 @@ describe(
             }
         );
 
+        it(
+            'curry',
+            function() {
+
+                // curry funcao simples
+                let somaCurry = v1 => v2 => somaSimples(v1, v2);
+                let soma10 = somaCurry(10);
+
+                assert.equal(
+                    soma10(10),
+                    20
+                );
+
+                // curry para 2 parametros
+                let curry2p = fn => v1 => v2 => fn(v1, v2);
+                let MinhaSoma2p = curry2p(somaSimples);
+                let soma20 = MinhaSoma2p(20);
+
+                assert.equal(
+                    soma20(20),
+                    40
+                );
+
+                // curry para varios parametros
+                const curryXp = fn =>
+                    fn.length === 0 ? fn() : p => curryXp(fn.bind(null, p));
+
+                let MinhaSoma3p = curryXp(soma3);
+                let soma30 = MinhaSoma3p(30);
+                let soma50 = soma30(20);
+
+                assert.equal(
+                    soma50(10),
+                    60
+                );
+            }
+        );
+
 
     }
 );
