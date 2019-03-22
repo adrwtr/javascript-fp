@@ -109,5 +109,35 @@ describe(
                 );
             }
         );
+
+        it(
+            'funcoes',
+            function() {
+                const somar = (x, y) => x + y;
+
+                // leght de funcao
+                const getQtdParametros = fn => fn.length;
+
+                // bind na funcao
+                const somar10 = somar.bind(null, 10);
+
+                const resultado20 = somar.bind(null, 10, 10);
+
+                assert.equal(
+                    getQtdParametros(somar),
+                    2
+                );
+
+                assert.equal(
+                    somar10(2),
+                    12
+                );
+
+                assert.equal(
+                    resultado20(),
+                    20
+                );
+            }
+        );
     }
 );

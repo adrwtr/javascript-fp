@@ -7,6 +7,7 @@ const funcoes = {
     'math' : require('../math'),
 };
 
+
 const arrSequecia = [1, 2, 3, 4, 5];
 
 // apenas retorna o valor
@@ -238,7 +239,6 @@ describe(
                 );
             }
         );
-
 
 
     }
